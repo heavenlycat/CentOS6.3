@@ -1,0 +1,31 @@
+DEPENDENCIES
+  ark
+    path: site-cookbooks/ark
+  hello
+    path: site-cookbooks/hello
+  java
+    path: site-cookbooks/java
+  logrotate
+    path: site-cookbooks/logrotate
+  tomcat
+    path: site-cookbooks/tomcat
+
+GRAPH
+  7-zip (1.0.2)
+    windows (>= 1.2.2)
+  ark (0.9.1)
+    7-zip (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    windows (>= 0.0.0)
+  build-essential (2.0.6)
+  chef_handler (1.1.6)
+  hello (0.1.0)
+  java (1.28.0)
+  jpackage (1.0.2)
+    java (>= 0.0.0)
+  logrotate (1.7.0)
+  tomcat (0.10.3)
+    java (>= 0.0.0)
+    jpackage (>= 0.0.0)
+  windows (1.34.6)
+    chef_handler (>= 0.0.0)
