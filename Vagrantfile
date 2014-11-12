@@ -9,11 +9,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	config.vm.box = "CentOS6.3"
 	config.vm.box_url = "https://s3.amazonaws.com/itmat-public/centos-6.3-chef-10.14.2.box"
 
-	config.vm.network "private_network", ip: "192.168.33.10"
+	config.vm.network "private_network", ip: "192.168.33.11"
 	config.vm.network "forwarded_port", guest:8080, host: 48080
 
 	config.vm.provider "virtualbox" do |vb|
-		vb.name = "CentOS6.3"
+		vb.name = "CentOS6.3(Tomcat)"
 		vb.gui = false
 		vb.customize ["modifyvm", :id, "--memory", "1024"]
 	end
