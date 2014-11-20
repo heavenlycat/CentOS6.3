@@ -58,6 +58,13 @@ service tomcat_version do
   action [:enable, :start]
 end
 
+template "/usr/local/#{tomcat_version}/conf/tomcat-users.xml" do
+  source "tomcat-users.xml.erb
+  owner "root"
+  group "root"
+  mode "0644"
+end
+
 template "/etc/default/#{tomcat_version}" do
   source "default_tomcat.erb"
   owner "root"
@@ -67,3 +74,44 @@ template "/etc/default/#{tomcat_version}" do
   notifies :restart, "service[#{tomcat_version}]", :immediately
 end
 
+# hello script setting
+directory "/usr/local/#{tomcat_version}/webapps/hello" do
+  owner node['tomcat']['user']
+end
+
+cookbook_file "/usr/local/#{tomcat_version}/webapps/hello/index.html" do
+  source "/hello/index.html"
+  mode "0644"
+end
+
+directory "/usr/local/#{tomcat_version}/webapps/hello/img" do
+  owner node['tomcat']['user']
+end
+
+cookbook_file "/usr/local/#{tomcat_version}/webapps/hello/img/p1.png" do
+  source "/hello/img/p1.png"
+  mode "0644"
+end
+
+directory "/usr/local/#{tomcat_version}/webapps/hello/WEB-INF" do
+  owner node['tomcat']['user']
+end
+
+cookbook_file "/usr/local/#{tomcat_version}/webapps/hello/WEB-INF/web.xml" do
+  source "/hello/WEB-INF/web.xml"
+  mode "0644"
+end
+
+directory "/usr/local/#{tomcat_version}/webapps/hello/WEB-INF/classes" do
+  owner node['tomcat']['user']
+end
+
+cookbook_file "/usr/local/#{tomcat_version}/webapps/hello/WEB-INF/classes/Hello.class" do
+  source "/hello/WEB-INF/classes/Hello.class"
+  mode "0644"
+end
+
+cookbook_file "/usr/local/#{tomcat_version}/webapps/hello/WEB-INF/classes/Hello.java" do
+  source "/hello/WEB-INF/classes/Hello.java"
+  mode "0644"
+end
