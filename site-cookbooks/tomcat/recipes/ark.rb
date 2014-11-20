@@ -59,7 +59,7 @@ service tomcat_version do
 end
 
 template "/usr/local/#{tomcat_version}/conf/tomcat-users.xml" do
-  source "tomcat-users.xml.erb
+  source "tomcat-users.xml.erb"
   owner "root"
   group "root"
   mode "0644"
